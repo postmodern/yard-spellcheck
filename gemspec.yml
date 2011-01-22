@@ -1,0 +1,20 @@
+name: yard-spellcheck
+version: 0.1.0
+summary: Spellcheck your YARD documentat
+description:
+  Adds the 'spellcheck' command to YARD, which will spellcheck every
+  docstring within your documentation.
+
+license: MIT
+authors: Postmodern
+email: postmodern.mod3@gmail.com
+homepage: http://github.com/postmodern/yard-spellcheck
+has_yard: true
+
+dependencies:
+  yard: ~> 0.6.0
+  ffi-hunspell: ~> 0.1.0
+
+development_dependencies:
+  ore-tasks: ~> 0.3.0
+  rspec: ~> 2.4.0
