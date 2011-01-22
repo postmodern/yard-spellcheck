@@ -17,7 +17,7 @@ module YARD
 
       UNHIGHLIGHT = "\e[0m"
 
-      SKIP_TAGS = Set['example', 'since', 'see']
+      SKIP_TAGS = Set['example', 'since', 'see', 'api']
 
       attr_reader :dict_dir
 
