@@ -6,11 +6,11 @@
 
 ## Description
 
-TODO: Description
+Spellcheck your YARD documentation.
 
 ## Synopsis
 
-    $ yard spellcheck
+    $ yard-spellcheck
 
 ## Requirements
 
