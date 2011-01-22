@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'yard'
+require 'yard/cli/spellcheck'
+
+YARD::CLI::Spellcheck.run(*ARGV)
