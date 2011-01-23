@@ -13,7 +13,7 @@ has_yard: true
 
 dependencies:
   yard: ~> 0.6.0
-  ffi-hunspell: ~> 0.1.0
+  ffi-hunspell: ~> 0.2.0
 
 development_dependencies:
   ore-tasks: ~> 0.3.0

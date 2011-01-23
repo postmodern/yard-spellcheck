@@ -6,34 +6,16 @@ module YARD
   module CLI
     class Spellcheck < Command
 
-      DEFAULT_DICT_DIRS = %w[
-        /usr/local/share/myspell
-        /usr/share/myspell
-      ]
-
-      DEFAULT_LANG = 'en_US'
-
       HIGHLIGHT = "\e[31m\e[4m"
 
       UNHIGHLIGHT = "\e[0m"
 
       SKIP_TAGS = Set['example', 'since', 'see', 'api']
 
-      attr_reader :dict_dir
-
       attr_reader :lang
 
       def initialize
-        @dict_dir = DEFAULT_DICT_DIRS.find do |path|
-          File.directory?(path)
-        end
-
-        @lang = if ENV['LANG']
-                  ENV['LANG'].split('.',2).first
-                else
-                  DEFAULT_LANG
-                end
-
+        @lang = FFI::Hunspell.lang
         @ignore = Set[]
         @added = Set[]
 
@@ -49,7 +31,7 @@ module YARD
 
         YARD::Registry.load!
 
-        FFI::Hunspell.dict(File.join(@dict_dir,@lang)) do |dict|
+        FFI::Hunspell.dict(@lang) do |dict|
           # add user specified words
           @added.each { |word| dict.add(word) }
 
@@ -90,12 +72,12 @@ module YARD
         opts.separator description
         opts.separator ""
 
-        opts.on('-L','--lang LANG','Language to spellcheck for') do |lang|
-          @lang = lang
+        opts.on('-D','--dict-dir','Dictionary directory') do |dir|
+          FFI::Hunspell.directories << File.expand_path(dir)
         end
 
-        opts.on('-D','--dict-dir','Dictionary directory') do |dir|
-          @dict_dir = File.expand_path(dir)
+        opts.on('-L','--lang LANG','Language to spellcheck for') do |lang|
+          @lang = lang
         end
 
         opts.on('-I','--ignore WORD [...]','Words to ignore') do |*words|
