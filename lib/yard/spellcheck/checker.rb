@@ -112,11 +112,9 @@ module YARD
           typos = Set[]
 
           text.scan(/[\w-]+/).each do |word|
-            if (@ignore.include?(word) || typos.include?(word))
-              next
-            end
+            next if @ignore.include?(word)
 
-            if (@misspelled.has_key?(word) && !dict.valid?(word))
+            if (@misspelled.has_key?(word) || !dict.valid?(word))
               @misspelled[word] += 1
 
               typos << word
