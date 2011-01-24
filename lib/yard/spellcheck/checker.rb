@@ -1,5 +1,6 @@
 require 'ffi/hunspell'
 require 'set'
+require 'yard'
 
 module YARD
   module Spellcheck
@@ -66,7 +67,7 @@ module YARD
         return enum_for(:check!) unless block_given?
 
         # load the YARD cache
-        YARD::Register.load!
+        YARD::Registry.load!
 
         # clear any statistics from last run
         @misspelled.clear
@@ -93,37 +94,38 @@ module YARD
             end
           end
         end
-
-        protected
-
-        #
-        # Spellchecks a piece of text.
-        #
-        # @param [String] text
-        #   The text to spellcheck.
-        #
-        # @param [FFI::Hunspell::Dictionary] dict
-        #   The dictionary to use.
-        #
-        # @return [Set<String>]
-        #   The mispelled words from the text.
-        #
-        def spellcheck(text,dict)
-          typos = Set[]
-
-          text.scan(/[\w-]+/).each do |word|
-            next if @ignore.include?(word)
-
-            if (@misspelled.has_key?(word) || !dict.valid?(word))
-              @misspelled[word] += 1
-
-              typos << word
-            end
-          end
-
-          return typos
-        end
       end
+
+      protected
+
+      #
+      # Spellchecks a piece of text.
+      #
+      # @param [String] text
+      #   The text to spellcheck.
+      #
+      # @param [FFI::Hunspell::Dictionary] dict
+      #   The dictionary to use.
+      #
+      # @return [Set<String>]
+      #   The mispelled words from the text.
+      #
+      def spellcheck(text,dict)
+        typos = Set[]
+
+        text.scan(/[[^\W_]-]+/).each do |word|
+          next if @ignore.include?(word)
+
+          if (@misspelled.has_key?(word) || !dict.valid?(word))
+            @misspelled[word] += 1
+
+            typos << word
+          end
+        end
+
+        return typos
+      end
+
     end
   end
 end

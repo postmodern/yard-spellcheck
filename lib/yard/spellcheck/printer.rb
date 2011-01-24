@@ -10,7 +10,7 @@ module YARD
       #
       # Prints typos in a YARD Documentation element.
       #
-      # @param [YARD::Docstring, YARD::Tag] element
+      # @param [YARD::Docstring, YARD::Tags::Tag] element
       #   The element that the typos occurred in.
       #
       # @param [Set<String>] typos
@@ -28,7 +28,7 @@ module YARD
           puts "Typos in #{element.object} (#{element.object.file}:#{line})"
 
           print_text line, element, typos
-        when YARD::Tag
+        when YARD::Tags::Tag
           puts "Typos in @#{element.tag_name} #{element.name} (#{element.object.file}:#{element.object.line})"
 
           print_text element.object.line, element.text, typos
@@ -49,7 +49,7 @@ module YARD
       #
       def print_text(line_number,text,typos)
         # highlight the typos
-        highlighted = text.gsub(/[\w-]+/) do |word|
+        highlighted = text.gsub(/[[^\W_]-]+/) do |word|
           if typos.include?(word)
             "#{HIGHLIGHT}#{word}#{UNHIGHLIGHT}"
           else
