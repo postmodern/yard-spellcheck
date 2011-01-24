@@ -111,7 +111,7 @@ module YARD
         def spellcheck(text,dict)
           typos = Set[]
 
-          text.split(/\s+/).each do |word|
+          text.scan(/[\w-]+/).each do |word|
             if (@ignore.include?(word) || typos.include?(word))
               next
             end
