@@ -50,7 +50,7 @@ module YARD
         end
 
         opts.on('-a','--add WORD [...]','Adds a word') do |word|
-          @added.ignore << word
+          @checker.added << word
         end
 
         common_options(opts)
