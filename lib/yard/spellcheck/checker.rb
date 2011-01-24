@@ -40,6 +40,8 @@ module YARD
         @lang = options.fetch(:lang,FFI::Hunspell.lang)
         @ignore = Set[]
         @added = Set[]
+
+        @known = Set[]
         @misspelled = Hash.new { |hash,key| hash[key] = 0 }
 
         if options[:ignore]
@@ -73,7 +75,13 @@ module YARD
         YARD::Registry.load!
 
         # clear any statistics from last run
+        @known.clear
         @misspelled.clear
+
+        # load known Class and Module names
+        YARD::Registry.all(:class, :module).each do |obj|
+          obj.path.split('::').each { |name| @known << name }
+        end
 
         FFI::Hunspell.dict(@lang) do |dict|
           # add user specified words
@@ -117,7 +125,7 @@ module YARD
         typos = Set[]
 
         text.scan(/[[^\W_]-]+/).each do |word|
-          next if @ignore.include?(word)
+          next if (@known.include?(word) || @ignore.include?(word))
 
           if (@misspelled.has_key?(word) || !dict.valid?(word))
             @misspelled[word] += 1
