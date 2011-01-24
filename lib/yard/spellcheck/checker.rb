@@ -9,16 +9,19 @@ module YARD
     #
     class Checker
 
-      # YARD tags to not spellcheck
+      # YARD tags to not spellcheck.
       SKIP_TAGS = Set['example', 'since', 'see', 'api']
+
+      # The Regexp to use for lexing words.
+      WORD_REGEXP = /[^\W_][[^\W_]'-]*[^\W_]/
 
       # The language to spellcheck against.
       attr_accessor :lang
 
-      # The words to ignore
+      # The words to ignore.
       attr_reader :ignore
 
-      # The words to add to the dictionary
+      # The words to add to the dictionary.
       attr_reader :added
 
       #
@@ -124,7 +127,7 @@ module YARD
       def spellcheck(text,dict)
         typos = Set[]
 
-        text.scan(/[[^\W_]-]+/).each do |word|
+        text.scan(WORD_REGEXP).each do |word|
           next if (@known.include?(word) || @ignore.include?(word))
 
           if (@misspelled.has_key?(word) || !dict.valid?(word))

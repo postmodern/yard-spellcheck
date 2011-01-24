@@ -1,3 +1,5 @@
+require 'yard/spellcheck/checker'
+
 module YARD
   module Spellcheck
     #
@@ -52,7 +54,7 @@ module YARD
       #
       def print_text(line_number,text,typos)
         # highlight the typos
-        highlighted = text.gsub(/[[^\W_]-]+/) do |word|
+        highlighted = text.gsub(Checker::WORD_REGEXP) do |word|
           if typos.include?(word)
             "#{HIGHLIGHT}#{word}#{UNHIGHLIGHT}"
           else
