@@ -3,6 +3,9 @@ require 'yard/spellcheck/printer'
 
 module YARD
   module CLI
+    #
+    # The `yard-spellcheck` command.
+    #
     class Spellcheck < Command
 
       include YARD::Spellcheck::Printer

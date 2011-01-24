@@ -4,6 +4,9 @@ require 'yard'
 
 module YARD
   module Spellcheck
+    #
+    # Handles loading and spellchecking YARD Documentation.
+    #
     class Checker
 
       # YARD tags to not spellcheck

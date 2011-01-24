@@ -1,5 +1,8 @@
 module YARD
   module Spellcheck
+    #
+    # Provides methods for printing the typos found in YARD Documentation.
+    #
     module Printer
       # Highlights text
       HIGHLIGHT = "\e[31m\e[4m"
