@@ -15,6 +15,7 @@ module YARD
       def initialize
         @checker = YARD::Spellcheck::Checker.new
         @names = []
+        @stats = false
       end
 
       def description
@@ -26,6 +27,16 @@ module YARD
 
         @checker.check!(@names) do |element,typos|
           print_typos element, typos
+        end
+
+        if @stats
+          puts "Statistics"
+
+          stats = @checker.misspelled.sort_by { |word,count| -count }
+          
+          stats.each_with_index do |(word,count),index|
+            puts "  #{index + 1}. #{word} (#{count})"
+          end
         end
       end
 
@@ -56,6 +67,10 @@ module YARD
 
         opts.on('-a','--add WORD [...]','Adds a word') do |word|
           @checker.added << word
+        end
+
+        opts.on('-S','--statistics','Print statistics') do
+          @stats = true
         end
 
         common_options(opts)
