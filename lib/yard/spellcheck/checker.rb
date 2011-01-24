@@ -3,7 +3,7 @@ require 'set'
 
 module YARD
   module Spellcheck
-    class Spellchecker
+    class Checker
 
       # YARD tags to not spellcheck
       SKIP_TAGS = Set['example', 'since', 'see', 'api']
