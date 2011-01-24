@@ -14,6 +14,7 @@ module YARD
 
       def initialize
         @checker = YARD::Spellcheck::Checker.new
+        @names = []
       end
 
       def description
@@ -23,7 +24,7 @@ module YARD
       def run(*args)
         optparse(*args)
 
-        @checker.check! do |element,typos|
+        @checker.check!(@names) do |element,typos|
           print_typos element, typos
         end
       end
@@ -39,6 +40,10 @@ module YARD
 
         opts.on('-D','--dict-dir','Dictionary directory') do |dir|
           FFI::Hunspell.directories << File.expand_path(dir)
+        end
+
+        opts.on('-c','--check [CLASS | MODULE]','Classes/Modules to spellcheck') do |name|
+          @names << name
         end
 
         opts.on('-L','--lang LANG','Language to spellcheck for') do |lang|

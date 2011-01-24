@@ -44,9 +44,6 @@ module YARD
         @ignore = Set[]
         @added = Set[]
 
-        @known = Set[]
-        @misspelled = Hash.new { |hash,key| hash[key] = 0 }
-
         if options[:ignore]
           @ignored += options[:add]
         end
@@ -54,10 +51,16 @@ module YARD
         if options[:add]
           @added += options[:add]
         end
+
+        @known = Set[]
+        @misspelled = Hash.new { |hash,key| hash[key] = 0 }
       end
 
       #
       # Spellchecks the YARD Documentation.
+      #
+      # @param [Array<String>] names
+      #   The Classes/Modules to spellcheck.
       #
       # @yield [element, typos]
       #   The given block will be passed each element and any typos found.
@@ -71,8 +74,8 @@ module YARD
       # @return [Enumerator]
       #   If no block is given, an Enumerator will be returned.
       #
-      def check!
-        return enum_for(:check!) unless block_given?
+      def check!(names=[],&block)
+        return enum_for(:check!) unless block
 
         # load the YARD cache
         YARD::Registry.load!
@@ -90,27 +93,57 @@ module YARD
           # add user specified words
           @added.each { |word| dict.add(word) }
 
-          YARD::Registry.all.each do |obj|
-            docstring = obj.docstring
-
-            unless (typos = spellcheck(docstring,dict)).empty?
-              yield docstring, typos
-            end
-
-            docstring.tags.each do |tag|
-              next if SKIP_TAGS.include?(tag.tag_name)
-
-              if tag.text
-                unless (typos = spellcheck(tag.text,dict)).empty?
-                  yield tag, typos
-                end
+          unless names.empty?
+            names.each do |name|
+              if (obj = YARD::Registry.at(name))
+                spellcheck_object(obj,dict,&block)
               end
+            end
+          else
+            YARD::Registry.each do |obj| 
+              spellcheck_object(obj,dict,&block)
             end
           end
         end
       end
 
       protected
+
+      #
+      # Spellchecks a YARD Documentation object.
+      #
+      # @param [YARD::CodeObject::Base] obj
+      #   The YARD Documentation object.
+      #
+      # @param [FFI::Hunspell::Dictionary] dict
+      #   The dictionary to spellcheck against.
+      #
+      # @yield [element, typos]
+      #   The given block will be passed each element and any typos found.
+      #
+      # @yieldparam [YARD::Docstring, YARD::Tag] element
+      #   An element from the YARD Documentation.
+      #
+      # @yieldparam [Set<String>] typos
+      #   Any typos found within the element.
+      #
+      def spellcheck_object(obj,dict)
+        docstring = obj.docstring
+
+        unless (typos = spellcheck(docstring,dict)).empty?
+          yield docstring, typos
+        end
+
+        docstring.tags.each do |tag|
+          next if SKIP_TAGS.include?(tag.tag_name)
+
+          if tag.text
+            unless (typos = spellcheck(tag.text,dict)).empty?
+              yield tag, typos
+            end
+          end
+        end
+      end
 
       #
       # Spellchecks a piece of text.
