@@ -24,6 +24,12 @@ module YARD
       # The words to add to the dictionary.
       attr_reader :added
 
+      # The known words from the documentation.
+      attr_reader :known
+
+      # The misspelled words.
+      attr_reader :misspelled
+
       #
       # Initializes the spellchecker.
       #
