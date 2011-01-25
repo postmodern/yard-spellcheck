@@ -12,7 +12,7 @@ module YARD
       # YARD tags to not spellcheck.
       SKIP_TAGS = Set['example', 'since', 'see', 'api']
 
-      # The Regexp to use for lexing words.
+      # The Regexp to use for scanning in words.
       WORD_REGEXP = /[^\W_][[^\W_]'-]*[^\W_]/
 
       # The language to spellcheck against.
@@ -161,7 +161,7 @@ module YARD
       #   The dictionary to use.
       #
       # @return [Set<String>]
-      #   The mispelled words from the text.
+      #   The misspelled words from the text.
       #
       def spellcheck(text,dict)
         typos = Set[]
