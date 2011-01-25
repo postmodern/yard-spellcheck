@@ -8,20 +8,34 @@ module YARD
     #
     class Spellcheck < Command
 
-      include YARD::Spellcheck::Printer
-
+      # The spellchecker.
       attr_reader :checker
 
+      #
+      # Initializes the spellcheck command.
+      #
       def initialize
         @checker = YARD::Spellcheck::Checker.new
         @names = []
         @stats = false
       end
 
+      #
+      # The command description.
+      #
+      # @return [String]
+      #   Description.
+      #
       def description
         'Spellchecks YARD documentation'
       end
 
+      #
+      # Runs the spellcheck command.
+      #
+      # @param [Array<String>] args
+      #   The arguments for the command.
+      #
       def run(*args)
         optparse(*args)
 
@@ -30,12 +44,21 @@ module YARD
         end
 
         if @stats
+          puts "Statistics"
           print_stats @checker
         end
       end
 
       protected
 
+      include YARD::Spellcheck::Printer
+
+      #
+      # Parses the command options.
+      #
+      # @param [Array<String>] args
+      #   The arguments for the command.
+      #
       def optparse(*args)
         opts = OptionParser.new
         opts.banner = "Usage: yard spellcheck [options]"
