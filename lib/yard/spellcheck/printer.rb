@@ -72,6 +72,20 @@ module YARD
 
         puts ''
       end
+
+      #
+      # Prints statistics gathered by the spellchecker.
+      #
+      # @param [Checker] checker
+      #   The spellchecker.
+      #
+      def print_stats(checker)
+        stats = checker.misspelled.sort_by { |word,count| -count }
+
+        stats.each_with_index do |(word,count),index|
+          puts "  #{index + 1}. #{word} (#{count})"
+        end
+      end
     end
   end
 end

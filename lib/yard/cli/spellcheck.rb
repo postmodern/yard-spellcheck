@@ -30,13 +30,7 @@ module YARD
         end
 
         if @stats
-          puts "Statistics"
-
-          stats = @checker.misspelled.sort_by { |word,count| -count }
-          
-          stats.each_with_index do |(word,count),index|
-            puts "  #{index + 1}. #{word} (#{count})"
-          end
+          print_stats @checker
         end
       end
 
