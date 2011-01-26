@@ -47,6 +47,8 @@ module YARD
           puts "Statistics"
           print_stats @checker
         end
+
+        exit -1 unless @checker.misspelled.empty?
       end
 
       protected
