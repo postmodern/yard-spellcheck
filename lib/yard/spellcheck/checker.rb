@@ -163,7 +163,7 @@ module YARD
 
         text.each_line do |line|
           # ignore indented lines
-          next if line =~ /\s{2,}/
+          next if line =~ /^\s{2,}/
 
           line.scan(WORD_REGEXP).each do |word|
             # ignore all underscored names
