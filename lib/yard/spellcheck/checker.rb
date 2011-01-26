@@ -1,6 +1,5 @@
 require 'ffi/hunspell'
 require 'set'
-require 'yard'
 
 module YARD
   module Spellcheck
