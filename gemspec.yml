@@ -1,5 +1,5 @@
 name: yard-spellcheck
-version: 0.1.0
+version: 0.1.1
 summary: Spellcheck your YARD documentat
 description:
   Adds the 'spellcheck' command to YARD, which will spellcheck every
