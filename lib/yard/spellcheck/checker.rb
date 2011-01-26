@@ -15,6 +15,12 @@ module YARD
       # The Regexp to use for scanning in words.
       WORD_REGEXP = /[^\W_][[^\W_]'-]*[^\W_]/
 
+      # The Regexp to filter out Acronyms.
+      ACRONYM_REGEXP = /(([A-Z]\.){2,}|[A-Z]{2,})/
+
+      # The Regexp to filter out CamelCase words.
+      CAMEL_CASE_REGEXP = /([A-Z][a-z]+){2,}/
+
       # The language to spellcheck against.
       attr_accessor :lang
 
@@ -23,9 +29,6 @@ module YARD
 
       # The words to add to the dictionary.
       attr_reader :added
-
-      # The known words from the documentation.
-      attr_reader :known
 
       # The misspelled words.
       attr_reader :misspelled
@@ -58,7 +61,6 @@ module YARD
           @added += options[:add]
         end
 
-        @known = Set[]
         @misspelled = Hash.new { |hash,key| hash[key] = 0 }
       end
 
@@ -87,13 +89,7 @@ module YARD
         YARD::Registry.load!
 
         # clear any statistics from last run
-        @known.clear
         @misspelled.clear
-
-        # load known Class and Module names
-        YARD::Registry.all(:class, :module).each do |obj|
-          obj.path.split('::').each { |name| @known << name }
-        end
 
         FFI::Hunspell.dict(@lang) do |dict|
           # add user specified words
@@ -167,7 +163,8 @@ module YARD
         typos = Set[]
 
         text.scan(WORD_REGEXP).each do |word|
-          next if (@known.include?(word) || @ignore.include?(word))
+          # ignore all acronyms and CamelCase words
+          next if (word =~ ACRONYM_REGEXP || word =~ CAMEL_CASE_REGEXP)
 
           if (@misspelled.has_key?(word) || !dict.valid?(word))
             @misspelled[word] += 1
