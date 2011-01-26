@@ -12,7 +12,7 @@ module YARD
       SKIP_TAGS = Set['example', 'since', 'see', 'api']
 
       # The Regexp to use for scanning in words.
-      WORD_REGEXP = /[^\W_][[^\W_]'-]*[^\W_]/
+      WORD_REGEXP = /[^\W_][\w'-]*[^\W_]/
 
       # The Regexp to filter out Acronyms.
       ACRONYM_REGEXP = /(([A-Z]\.){2,}|[A-Z]{2,})/
@@ -162,6 +162,9 @@ module YARD
         typos = Set[]
 
         text.scan(WORD_REGEXP).each do |word|
+          # ignore all underscored names
+          next if word.include?('_')
+
           # ignore all acronyms and CamelCase words
           next if (word =~ ACRONYM_REGEXP || word =~ CAMEL_CASE_REGEXP)
 
