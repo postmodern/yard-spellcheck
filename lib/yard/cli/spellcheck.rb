@@ -39,6 +39,8 @@ module YARD
       def run(*args)
         optparse(*args)
 
+        CLI::Yardoc.run('-c', '-n', '--no-stats')
+
         @checker.check!(@names) do |element,typos|
           print_typos element, typos
         end
