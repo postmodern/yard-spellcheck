@@ -161,17 +161,22 @@ module YARD
       def spellcheck(text,dict)
         typos = Set[]
 
-        text.scan(WORD_REGEXP).each do |word|
-          # ignore all underscored names
-          next if word.include?('_')
+        text.each_line do |line|
+          # ignore indented lines
+          next if line =~ /\s{2,}/
 
-          # ignore all acronyms and CamelCase words
-          next if (word =~ ACRONYM_REGEXP || word =~ CAMEL_CASE_REGEXP)
+          line.scan(WORD_REGEXP).each do |word|
+            # ignore all underscored names
+            next if word.include?('_')
 
-          if (@misspelled.has_key?(word) || !dict.valid?(word))
-            @misspelled[word] += 1
+            # ignore all acronyms and CamelCase words
+            next if (word =~ ACRONYM_REGEXP || word =~ CAMEL_CASE_REGEXP)
 
-            typos << word
+            if (@misspelled.has_key?(word) || !dict.valid?(word))
+              @misspelled[word] += 1
+
+              typos << word
+            end
           end
         end
 
