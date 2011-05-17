@@ -50,7 +50,7 @@ module YARD
       def initialize(options={})
         @lang = options.fetch(:lang,FFI::Hunspell.lang)
         @ignore = Set[]
-        @added = []
+        @added = Set[]
 
         if options[:ignore]
           @ignored += options[:add]
@@ -92,7 +92,7 @@ module YARD
 
         FFI::Hunspell.dict(@lang) do |dict|
           # add user specified words
-          @added.each { |word| dict.add(word) }
+          @added.each { |word| dict.add(word.dup) }
 
           unless names.empty?
             names.each do |name|
