@@ -41,16 +41,16 @@ module YARD
       # @option options [String, Symbol] :lang (FFI::Hunspell.lang)
       #   The language to spellcheck against.
       #
-      # @option options [Array, Set] :ignore
+      # @option options [Array<String>, Set<String>] :ignore
       #   The words to ignore.
       #
-      # @option options [Array, Set] :add
+      # @option options [Array<String>] :add
       #   The words to add to the dictionary.
       #
       def initialize(options={})
         @lang = options.fetch(:lang,FFI::Hunspell.lang)
         @ignore = Set[]
-        @added = Set[]
+        @added = []
 
         if options[:ignore]
           @ignored += options[:add]
