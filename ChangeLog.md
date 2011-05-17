@@ -1,3 +1,8 @@
+### 0.1.2 / 2011-05-17
+
+* Added a work-around for FFI 1.0.8 not accepting frozen Strings.
+* Filter words specified by `--ignore`.
+
 ### 0.1.1 / 2011-01-25
 
 * Do not load `yard` within the plugin.
