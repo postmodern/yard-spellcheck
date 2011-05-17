@@ -172,6 +172,9 @@ module YARD
             # ignore all acronyms and CamelCase words
             next if (word =~ ACRONYM_REGEXP || word =~ CAMEL_CASE_REGEXP)
 
+            # skip ignored words
+            next if @ignore.include?(word)
+
             if (@misspelled.has_key?(word) || !dict.valid?(word))
               @misspelled[word] += 1
 
