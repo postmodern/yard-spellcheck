@@ -1,3 +1,8 @@
+### 0.1.3 / 2011-06-08
+
+* Require yard ~> 0.6.
+* Fixed an option parsing issue with the `-D` option.
+
 ### 0.1.2 / 2011-05-17
 
 * Added a work-around for FFI 1.0.8 not accepting frozen Strings.
