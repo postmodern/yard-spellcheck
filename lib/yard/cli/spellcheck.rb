@@ -70,7 +70,7 @@ module YARD
         opts.separator description
         opts.separator ""
 
-        opts.on('-D','--dict-dir','Dictionary directory') do |dir|
+        opts.on('-D','--dict-dir DIR','Dictionary directory') do |dir|
           FFI::Hunspell.directories << File.expand_path(dir)
         end
 
