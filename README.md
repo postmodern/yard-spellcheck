@@ -14,7 +14,7 @@ Spellcheck your YARD documentation.
 
 ## Requirements
 
-* [yard](http://github.com/lsegal/yard) ~> 0.6.0
+* [yard](http://github.com/lsegal/yard) ~> 0.6
 * [ffi-hunspell](http://github.com/postmodern/ffi-hunspell) ~> 0.2.0
 
 ## Install
