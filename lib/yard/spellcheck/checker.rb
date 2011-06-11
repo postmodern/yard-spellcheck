@@ -53,7 +53,7 @@ module YARD
         @added = Set[]
 
         if options[:ignore]
-          @ignored += options[:add]
+          @ignore += options[:ignore]
         end
 
         if options[:add]

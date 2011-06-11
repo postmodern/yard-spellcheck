@@ -83,7 +83,7 @@ module YARD
         end
 
         opts.on('-I','--ignore WORD','Words to ignore') do |word|
-          @checker.ignored << word
+          @checker.ignore << word
         end
 
         opts.on('-a','--add WORD [...]','Adds a word') do |word|
