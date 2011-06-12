@@ -1,3 +1,8 @@
+### 0.1.4 / 2011-06-11
+
+* Fixed typos in {YARD::Spellcheck::Checker} with respect to the
+  `:ignore` / `:add` options. (thanks cldwalker)
+
 ### 0.1.3 / 2011-06-08
 
 * Require yard ~> 0.6.
