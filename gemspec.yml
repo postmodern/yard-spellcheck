@@ -16,5 +16,5 @@ dependencies:
   ffi-hunspell: ~> 0.2.0
 
 development_dependencies:
-  ore-tasks: ~> 0.3
+  rubygems-tasks: ~> 0.1
   rspec: ~> 2.4
