@@ -1,7 +1,7 @@
 # yard-spellcheck
 
-* [Homepage](http://github.com/postmodern/yard-spellcheck)
-* [Issues](http://github.com/postmodern/yard-spellcheck/issues)
+* [Homepage](https://github.com/postmodern/yard-spellcheck)
+* [Issues](https://github.com/postmodern/yard-spellcheck/issues)
 * [Email](postmodern.mod3 at gmail.com)
 
 ## Description
@@ -14,8 +14,8 @@ Spellcheck your YARD documentation.
 
 ## Requirements
 
-* [yard](http://github.com/lsegal/yard) ~> 0.6
-* [ffi-hunspell](http://github.com/postmodern/ffi-hunspell) ~> 0.2.0
+* [yard](https://github.com/lsegal/yard) ~> 0.6
+* [ffi-hunspell](https://github.com/postmodern/ffi-hunspell) ~> 0.2.0
 
 ## Install
 
