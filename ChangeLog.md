@@ -1,3 +1,9 @@
+### 0.1.5 / 2012-05-27
+
+* Added {YARD::Spellcheck::VERSION}.
+* Replaced ore-tasks with
+  [rubygems-tasks](https://github.com/postmodern/rubygems-tasks#readme).
+
 ### 0.1.4 / 2011-06-11
 
 * Fixed typos in {YARD::Spellcheck::Checker} with respect to the
