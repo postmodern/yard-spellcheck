@@ -10,3 +10,7 @@ task :default => :spec
 
 require 'yard'
 YARD::Rake::YardocTask.new
+
+$LOAD_PATH << File.expand_path('lib')
+require 'yard/spellcheck/task'
+YARD::Spellcheck::Task.new
