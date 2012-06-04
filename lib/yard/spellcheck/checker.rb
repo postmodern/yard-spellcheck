@@ -48,9 +48,9 @@ module YARD
       #   The words to add to the dictionary.
       #
       def initialize(options={})
-        @lang = options.fetch(:lang,FFI::Hunspell.lang)
+        @lang   = options.fetch(:lang,FFI::Hunspell.lang)
         @ignore = Set[]
-        @added = Set[]
+        @added  = Set[]
 
         if options[:ignore]
           @ignore += options[:ignore]
