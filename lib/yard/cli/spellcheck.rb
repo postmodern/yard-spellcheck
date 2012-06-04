@@ -15,9 +15,9 @@ module YARD
       # Initializes the spellcheck command.
       #
       def initialize
-        @checker = YARD::Spellcheck::Checker.new
+        @checker   = YARD::Spellcheck::Checker.new
         @constants = []
-        @stats = false
+        @stats     = false
       end
 
       #
