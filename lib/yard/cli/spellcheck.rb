@@ -16,7 +16,7 @@ module YARD
       #
       def initialize
         @checker = YARD::Spellcheck::Checker.new
-        @names = []
+        @constants = []
         @stats = false
       end
 
@@ -41,7 +41,7 @@ module YARD
 
         CLI::Yardoc.run('-c', '-n', '--no-stats')
 
-        @checker.check!(@names) do |element,typos|
+        @checker.check!(@constants) do |element,typos|
           print_typos element, typos
         end
 
@@ -75,7 +75,7 @@ module YARD
         end
 
         opts.on('-c','--check [CLASS | MODULE]','Classes/Modules to spellcheck') do |name|
-          @names << name
+          @constants << name
         end
 
         opts.on('-L','--lang LANG','Language to spellcheck for') do |lang|
