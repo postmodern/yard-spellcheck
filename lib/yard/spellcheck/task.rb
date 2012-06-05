@@ -41,7 +41,7 @@ module YARD
       # @see Checker#initialize
       #
       def initialize(options={})
-        @constants = options.fetch(:constants) { [] }
+        @constants = options.fetch(:constants,[])
         @checker   = Checker.new(options)
 
         yield self if block_given?
