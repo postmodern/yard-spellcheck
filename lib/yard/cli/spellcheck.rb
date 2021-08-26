@@ -9,6 +9,8 @@ module YARD
     class Spellcheck < Command
 
       # The spellchecker.
+      #
+      # @return [YARD::Spellcheck::Checker]
       attr_reader :checker
 
       #

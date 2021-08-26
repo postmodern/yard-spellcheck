@@ -21,15 +21,23 @@ module YARD
       CAMEL_CASE_REGEXP = /([A-Z][a-z]+){2,}/
 
       # The language to spellcheck against.
+      #
+      # @return [String]
       attr_accessor :lang
 
       # The words to ignore.
+      #
+      # @return [Set<String>]
       attr_reader :ignore
 
       # The words to add to the dictionary.
+      #
+      # @return [Set<String>]
       attr_reader :added
 
       # The misspelled words.
+      # 
+      # @return [Hash{String => Integer}]
       attr_reader :misspelled
 
       #
