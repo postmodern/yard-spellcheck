@@ -43,30 +43,22 @@ module YARD
       #
       # Initializes the spellchecker.
       #
-      # @param [Hash] options
-      #   Additional options.
-      #
-      # @option options [String, Symbol] :lang (FFI::Hunspell.lang)
+      # @param [String, Symbol] lang
       #   The language to spellcheck against.
       #
-      # @option options [Array<String>, Set<String>] :ignore
+      # @param [Array<String>, Set<String>] ignore
       #   The words to ignore.
       #
-      # @option options [Array<String>] :add
+      # @param [Array<String>] add
       #   The words to add to the dictionary.
       #
-      def initialize(options={})
-        @lang   = options.fetch(:lang,FFI::Hunspell.lang)
+      def initialize(lang: FFI::Hunspell.lang, ignore: nil, add: nil)
+        @lang   = lang
         @ignore = Set[]
         @added  = Set[]
 
-        if options[:ignore]
-          @ignore += options[:ignore]
-        end
-
-        if options[:add]
-          @added += options[:add]
-        end
+        @ignore += ignore if ignore
+        @added  += add    if add
 
         @misspelled = Hash.new { |hash,key| hash[key] = 0 }
       end
