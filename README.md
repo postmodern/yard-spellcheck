@@ -24,6 +24,12 @@ $ yard-spellcheck
 $ gem install yard-spellcheck
 ```
 
+### Gemfile
+
+```ruby
+gem 'yard-spellcheck'
+```
+
 ## Copyright
 
 Copyright (c) 2011-2012 Hal Brodigan
