@@ -32,7 +32,7 @@ gem 'yard-spellcheck', require: false
 
 ## Copyright
 
-Copyright (c) 2011-2012 Hal Brodigan
+Copyright (c) 2011-2021 Hal Brodigan
 
 See {file:LICENSE.txt} for details.
 
