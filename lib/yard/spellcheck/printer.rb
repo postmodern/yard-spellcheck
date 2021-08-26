@@ -24,10 +24,8 @@ module YARD
       def print_typos(element,typos)
         case element
         when YARD::Docstring
-          line = if element.line_range
-                   element.line_range.first
-                 else
-                   1
+          line = if element.line_range then element.line_range.first
+                 else                       1
                  end
 
           puts "Typos in #{element.object} (#{element.object.file}:#{line})"
@@ -62,7 +60,7 @@ module YARD
           end
         end
 
-        puts ''
+        puts
 
         # print the lines
         highlighted.each_line do |line|
@@ -70,7 +68,7 @@ module YARD
           line_number += 1
         end
 
-        puts ''
+        puts
       end
 
       #

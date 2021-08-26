@@ -48,9 +48,9 @@ module YARD
       #   The words to add to the dictionary.
       #
       def initialize(options={})
-        @lang = options.fetch(:lang,FFI::Hunspell.lang)
+        @lang   = options.fetch(:lang,FFI::Hunspell.lang)
         @ignore = Set[]
-        @added = Set[]
+        @added  = Set[]
 
         if options[:ignore]
           @ignore += options[:ignore]
@@ -82,7 +82,7 @@ module YARD
       #   If no block is given, an Enumerator will be returned.
       #
       def check!(names=[],&block)
-        return enum_for(:check!) unless block
+        return enum_for(__method__) unless block
 
         # load the YARD cache
         YARD::Registry.load!
