@@ -15,5 +15,4 @@ dependencies:
   ffi-hunspell: ~> 0.2
 
 development_dependencies:
-  rubygems-tasks: ~> 0.1
-  rspec: ~> 2.4
+  bundler: ~> 2.0
