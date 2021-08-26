@@ -25,11 +25,11 @@ module YARD
       #
       # Initializes and defines the `yard:spellcheck` task.
       #
-      # @param [Hash] options
-      #   Additional options for {Checker#initialize}.
-      #
-      # @option options [Array<String>] :constants ([])
+      # @param [Array<String>] constants
       #   The Classes/Modules to spellcheck.
+      #
+      # @param [Hash{Symbol => Object}] kwargs
+      #   Additional keyword arguments for {Checker#initialize}.
       #
       # @yield [task]
       #   If a block is given, it will be passed the newly created task object
@@ -40,9 +40,9 @@ module YARD
       #
       # @see Checker#initialize
       #
-      def initialize(options={})
-        @constants = options.fetch(:constants,[])
-        @checker   = Checker.new(options)
+      def initialize(constants: [], **kwargs)
+        @constants = constants
+        @checker   = Checker.new(**kwargs)
 
         yield self if block_given?
         define
