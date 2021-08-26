@@ -27,7 +27,7 @@ $ gem install yard-spellcheck
 ### Gemfile
 
 ```ruby
-gem 'yard-spellcheck'
+gem 'yard-spellcheck', require: false
 ```
 
 ## Copyright
