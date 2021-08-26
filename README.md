@@ -2,27 +2,34 @@
 
 * [Homepage](https://github.com/postmodern/yard-spellcheck)
 * [Issues](https://github.com/postmodern/yard-spellcheck/issues)
-* [Email](postmodern.mod3 at gmail.com)
 
 ## Description
 
-Spellcheck your YARD documentation.
+Spellcheck your [YARD] documentation.
 
 ## Synopsis
 
-    $ yard-spellcheck
+```shell
+$ yard-spellcheck
+```
 
 ## Requirements
 
-* [yard](https://github.com/lsegal/yard) ~> 0.6
-* [ffi-hunspell](https://github.com/postmodern/ffi-hunspell) ~> 0.2
+* [yard] ~> 0.6
+* [ffi-hunspell] ~> 0.2
 
 ## Install
 
-    $ gem install yard-spellcheck
+```shell
+$ gem install yard-spellcheck
+```
 
 ## Copyright
 
 Copyright (c) 2011-2012 Hal Brodigan
 
 See {file:LICENSE.txt} for details.
+
+[YARD]: https://yardoc.org/
+[yard]: https://github.com/lsegal/yard
+[ffi-hunspell]: https://github.com/postmodern/ffi-hunspell#readme
