@@ -16,8 +16,8 @@ module YARD
       #
       def initialize
         @checker = YARD::Spellcheck::Checker.new
-        @names = []
-        @stats = false
+        @names   = []
+        @stats   = false
       end
 
       #
