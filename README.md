@@ -15,6 +15,7 @@ $ yard-spellcheck
 
 ## Requirements
 
+* [ruby] >= 2.0.0
 * [yard] ~> 0.6
 * [ffi-hunspell] ~> 0.2
 
@@ -37,5 +38,7 @@ Copyright (c) 2011-2021 Hal Brodigan
 See {file:LICENSE.txt} for details.
 
 [YARD]: https://yardoc.org/
+
+[ruby]: https://www.ruby-lang.org/
 [yard]: https://github.com/lsegal/yard
 [ffi-hunspell]: https://github.com/postmodern/ffi-hunspell#readme
